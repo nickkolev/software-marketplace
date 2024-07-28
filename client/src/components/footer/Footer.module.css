@@ -1,0 +1,19 @@
+.footerSection {
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .footerSection p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+  }
+  
