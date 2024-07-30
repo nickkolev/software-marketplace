@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { AuthContext } from '../../../contexts/authContext';
+import { AuthContext } from '../../../contexts/AuthContext';
 
 export default function Navigation({ isHome }) {
     const location = useLocation();
@@ -27,7 +27,7 @@ export default function Navigation({ isHome }) {
                             </li>
                             <li className={`nav-item ${location.pathname === '/software' ? 'active' : ''}`}>
                                 <Link className="nav-link" to="/software">
-                                    Catalog {location.pathname === '/software' && <span className="sr-only">(current)</span>}
+                                    Software {location.pathname === '/software' && <span className="sr-only">(current)</span>}
                                 </Link>
                             </li>
                             {isAuthenticated && (
