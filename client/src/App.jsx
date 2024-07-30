@@ -1,30 +1,50 @@
 import { Routes, Route } from "react-router-dom"
+import { useState } from "react"
 
 import Footer from "./components/footer/Footer"
 import Header from "./components/header/Header"
 import Home from "./components/home/Home"
 import Login from "./components/login/Login"
 import Register from "./components/register/Register"
- 
+
+import { AuthContext } from "./contexts/authContext.js"
+
 function App() {
+	const [authState, setAuthState] = useState({});
 
-  return (
-    <>
+	const changeAuthState = (state) => {
 
-      <Header />
+		localStorage.setItem('accessToken', state.accessToken);
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        {/* <Route path="/catalog" element={<Home />} />
+		setAuthState(state);
+	}
+
+	const contextData = {
+		userId: authState._id,
+		email: authState.email,
+		accessToken: authState.accessToken,
+		isAuthenticated: !!authState.email,
+		changeAuthState
+	}
+
+	return (
+		<AuthContext.Provider value={contextData}>
+			<>
+				<Header />
+
+				<Routes>
+					<Route path="/" element={<Home />} />
+					{/* <Route path="/catalog" element={<Home />} />
         <Route path="/upload" element={<Home />} /> */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
+					<Route path="/login" element={<Login />} />
+					<Route path="/register" element={<Register />} />
+				</Routes>
 
-      <Footer />
+				<Footer />
 
-    </>
-  )
+			</>
+		</AuthContext.Provider>
+	)
 }
 
 export default App

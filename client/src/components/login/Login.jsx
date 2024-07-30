@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useNavigate } from "react-router-dom";
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,19 +15,30 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-// TODO remove, this demo shouldn't need to reset the theme.
+import { useLogin } from "../../hooks/useAuth";
+import { useForm } from "../../hooks/useForm";
 
 const defaultTheme = createTheme();
+const initialValues = { email: '', password: '' };
 
 export default function Login() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  const login = useLogin();
+  const navigate = useNavigate();
+
+  const loginHandler = async ({ email, password }) => {
+    try {
+      await login(email, password);
+      navigate('/');
+    } catch (err) {
+      console.log(err.message);
+    }
   };
+
+  const {
+    values,
+    changeHandler,
+    submitHandler
+  } = useForm(initialValues, loginHandler);
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -33,11 +46,11 @@ export default function Login() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 10,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            minHeight: '76.5vh',
+            height: '90vh',
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -46,7 +59,7 @@ export default function Login() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={submitHandler} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -54,6 +67,8 @@ export default function Login() {
               id="email"
               label="Email Address"
               name="email"
+              value={values.email}
+              onChange={changeHandler}
               autoComplete="email"
               autoFocus
             />
@@ -62,6 +77,8 @@ export default function Login() {
               required
               fullWidth
               name="password"
+              value={values.password}
+              onChange={changeHandler}
               label="Password"
               type="password"
               id="password"
