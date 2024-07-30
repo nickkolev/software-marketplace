@@ -70,7 +70,7 @@ export default function Register() {
                     )}
                     <Box component="form" noValidate onSubmit={submitHandler} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
+                            {/* <Grid item xs={12} sm={6}>
                                 <TextField
                                     autoComplete="given-name"
                                     name="firstName"
@@ -90,7 +90,7 @@ export default function Register() {
                                     name="lastName"
                                     autoComplete="family-name"
                                 />
-                            </Grid>
+                            </Grid> */}
                             <Grid item xs={12}>
                                 <TextField
                                     required
