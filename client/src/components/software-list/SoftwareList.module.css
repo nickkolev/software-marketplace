@@ -12,3 +12,10 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.noSoftwaresMessage {
+    text-align: center;
+    color: #888;
+    font-size: 16px;
+    margin-top: 60px;
+}

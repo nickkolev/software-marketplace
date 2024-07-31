@@ -20,11 +20,15 @@ export default function SoftwareList() {
     return (
         <section className={styles.catalog}>
             <h2 className={styles.catalogTitle}>Latest Softwares</h2>
-            <div className={styles.softwareList}>
-                {latestSoftwares.map(software => (
-                    <SoftwareListItem key={software._id} software={software} />
-                ))}
-            </div>
+            {latestSoftwares.length > 0 ? (
+                <div className={styles.softwareList}>
+                    {latestSoftwares.map(software => (
+                        <SoftwareListItem key={software._id} software={software} />
+                    ))}
+                </div>
+            ) : (
+                <p className={styles.noSoftwaresMessage}>No software items have been added yet.</p>
+            )}
         </section>
     );
 }
