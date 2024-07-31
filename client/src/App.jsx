@@ -8,7 +8,7 @@ import Login from "./components/login/Login"
 import Register from "./components/register/Register"
 
 import { AuthContext } from "./contexts/AuthContext.js"
-import Catalog from "./components/catalog/Catalog.jsx"
+import SoftwareList from "./components/software-list/SoftwareList.jsx"
 
 function App() {
 	const [authState, setAuthState] = useState({});
@@ -35,8 +35,8 @@ function App() {
 
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="/software" element={<Catalog />} />
-        			{/* <Route path="/upload" element={<Home />} /> */}
+					<Route path="/software" element={<SoftwareList />} />
+					{/* <Route path="/upload" element={<Home />} /> */}
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
 				</Routes>

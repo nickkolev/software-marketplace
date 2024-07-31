@@ -1,0 +1,62 @@
+.softwareCard {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    width: 250px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.softwareCard:hover {
+    transform: scale(1.05);
+}
+
+.softwareImage {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.softwareDetails {
+    padding: 15px;
+}
+
+.softwareTitle {
+    font-size: 18px;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.softwareCategory, .softwareSize, .softwareVersion {
+    margin: 5px 0;
+    color: #555;
+}
+
+.softwareButtons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.softwareButton {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.detailsButton {
+    background-color: #007bff;
+    color: white;
+}
+
+.downloadButton {
+    background-color: #28a745;
+    color: white;
+}
+
+.softwareButton:hover {
+    opacity: 0.9;
+}

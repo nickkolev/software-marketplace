@@ -1,4 +1,20 @@
+import { useState, useEffect } from "react";
+import softwaresApi from "../../../api/software-api";
+
 export default function LatestSoftware() {
+    const [latestSoftwares, setLatestSoftwares] = useState([]);
+
+    useEffect(() => {
+        (async () => {
+            // TODO: modify to fetch only the latest softwares
+            const result = await softwaresApi.getAll();
+
+            setLatestSoftwares(result.reverse().slice(0, 3));
+
+            console.log(result);
+        })();
+    }, []);
+
     return (
         <section className="service_section layout_padding">
             <div className="service_container">

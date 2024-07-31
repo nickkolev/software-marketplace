@@ -1,0 +1,14 @@
+.catalog {
+    padding: 20px;
+}
+
+.catalogTitle {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.softwareList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
