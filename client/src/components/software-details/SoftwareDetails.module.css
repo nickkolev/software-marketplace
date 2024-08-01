@@ -1,0 +1,125 @@
+.softwareDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.softwareImage {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.details {
+    text-align: left;
+    width: 100%;
+    max-width: 600px;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.version, .category, .size, .operatingSystem, .instructions {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.downloadButton {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.downloadButton:hover {
+    background-color: #218838;
+}
+
+.editButtons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.editButton, .deleteButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.editButton {
+    background-color: #007bff;
+    color: white;
+}
+
+.editButton:hover {
+    background-color: #0056b3;
+}
+
+.deleteButton {
+    background-color: #dc3545;
+    color: white;
+}
+
+.deleteButton:hover {
+    background-color: #c82333;
+}
+
+.commentsSection {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.commentsSection h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.comment {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.commentForm {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.commentInput {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    margin-bottom: 10px;
+    font-size: 16px;
+    resize: none;
+    min-height: 80px;
+}
+
+.commentButton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.commentButton:hover {
+    background-color: #0056b3;
+}

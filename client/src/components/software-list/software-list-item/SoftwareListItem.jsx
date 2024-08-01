@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import styles from './SoftwareListItem.module.css';
 
 export default function SoftwareListItem({ software }) {
@@ -11,8 +13,8 @@ export default function SoftwareListItem({ software }) {
                 <p className={styles.softwareSize}>Size: {size}</p>
                 <p className={styles.softwareVersion}>Version: {version}</p>
                 <div className={styles.softwareButtons}>
-                    <button className={`${styles.softwareButton} ${styles.detailsButton}`}>Details</button>
-                    <button className={`${styles.softwareButton} ${styles.downloadButton}`}>Download</button>
+                    <Link className={`${styles.softwareButton} ${styles.detailsButton}`} to={`/softwares/${_id}/details`}>Details</Link>
+                    <Link className={`${styles.softwareButton} ${styles.downloadButton}`} to={'/'}>Download</Link>
                 </div>
             </div>
         </div>

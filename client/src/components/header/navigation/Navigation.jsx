@@ -25,16 +25,16 @@ export default function Navigation({ isHome }) {
                                     Home {location.pathname === '/' && <span className="sr-only">(current)</span>}
                                 </Link>
                             </li>
-                            <li className={`nav-item ${location.pathname === '/software' ? 'active' : ''}`}>
-                                <Link className="nav-link" to="/software">
-                                    Software {location.pathname === '/software' && <span className="sr-only">(current)</span>}
+                            <li className={`nav-item ${location.pathname === '/softwares' ? 'active' : ''}`}>
+                                <Link className="nav-link" to="/softwares">
+                                    Software {location.pathname === '/softwares' && <span className="sr-only">(current)</span>}
                                 </Link>
                             </li>
                             {isAuthenticated && (
                                 <>
-                                    <li className={`nav-item ${location.pathname === '/software/create' ? 'active' : ''}`}>
-                                        <Link className="nav-link" to="/software/create">
-                                            Upload {location.pathname === '/software/create' && <span className="sr-only">(current)</span>}
+                                    <li className={`nav-item ${location.pathname === '/softwares/create' ? 'active' : ''}`}>
+                                        <Link className="nav-link" to="/softwares/create">
+                                            Upload {location.pathname === '/softwares/create' && <span className="sr-only">(current)</span>}
                                         </Link>
                                     </li>
                                     <li className={`nav-item ${location.pathname === '/profile' ? 'active' : ''}`}>

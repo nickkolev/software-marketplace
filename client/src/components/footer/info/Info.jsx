@@ -65,7 +65,7 @@ export default function Info() {
                                 <Link className="active" to="/">
                                     Home
                                 </Link>
-                                <Link className="" to="/software">
+                                <Link className="" to="/softwares">
                                     Catalog
                                 </Link>
                             </div>
