@@ -9,6 +9,7 @@ export default function SoftwareList() {
     const [latestSoftwares, setLatestSoftwares] = useState([]);
 
     useEffect(() => {
+        // useEffect doesn't allow async functions to be passed directly to it
         (async () => {
             const result = await softwaresApi.getAll();
             console.log(result);

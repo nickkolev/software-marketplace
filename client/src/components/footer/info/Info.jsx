@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function Info() {
     return (
         <section className="info_section layout_padding2">
@@ -60,15 +62,12 @@ export default function Info() {
                                 Links
                             </h4>
                             <div className="info_links">
-                                <a className="active" href="index.html">
+                                <Link className="active" to="/">
                                     Home
-                                </a>
-                                <a className="" href="about.html">
+                                </Link>
+                                <Link className="" to="/software">
                                     Catalog
-                                </a>
-                                <a className="" href="service.html">
-                                    Upload
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
