@@ -7,8 +7,9 @@ import Header from "./components/header/Header"
 import Home from "./components/home/Home"
 import Login from "./components/login/Login"
 import Register from "./components/register/Register"
-import SoftwareList from "./components/software-list/SoftwareList.jsx"
+import SoftwareList from "./components/software-list/SoftwareList"
 import SoftwareDetails from "./components/software-details/SoftwareDetails"
+import SoftwareCreate from "./components/software-create/SoftwareCreate"
 
 function App() {
 	const [authState, setAuthState] = useState({});
@@ -37,7 +38,7 @@ function App() {
 					<Route path="/" element={<Home />} />
 					<Route path="/softwares" element={<SoftwareList />} />
 					<Route path="/softwares/:softwareId/details" element={<SoftwareDetails />} />
-					{/* <Route path="/upload" element={<Home />} /> */}
+					<Route path="/softwares/create" element={<SoftwareCreate />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
 				</Routes>

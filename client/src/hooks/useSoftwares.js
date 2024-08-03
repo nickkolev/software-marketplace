@@ -30,3 +30,10 @@ export function useGetOneSoftware(softwareId) {
 
     return [software, setSoftware];
 }
+
+export function useCreateSoftware() {
+    
+    const softwareCreateHandler = (softwareData) => softwaresApi.create(softwareData)
+
+    return softwareCreateHandler;
+}

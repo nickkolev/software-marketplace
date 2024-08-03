@@ -3,7 +3,6 @@ import { useState } from 'react';
 export function useForm(initialValues, submitCallback) {
     const [values, setValues] = useState(initialValues);
     
-    //TODO: implement this for checkbox and radio buttons
     function changeHandler(event) {
         setValues(state => ({
             ...state,
