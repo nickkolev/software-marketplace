@@ -1,29 +1,18 @@
-import { useState, useEffect } from "react";
-import softwaresApi from "../../api/software-api";
+import { useGetAllSoftwares } from '../../hooks/useSoftwares';
 import SoftwareListItem from './software-list-item/SoftwareListItem';
 
 import styles from './SoftwareList.module.css';
 
 export default function SoftwareList() {
 
-    const [latestSoftwares, setLatestSoftwares] = useState([]);
-
-    useEffect(() => {
-        // useEffect doesn't allow async functions to be passed directly to it
-        (async () => {
-            const result = await softwaresApi.getAll();
-            console.log(result);
-
-            setLatestSoftwares(result);
-        })();
-    }, []);
+    const [softwares, setSoftwares] = useGetAllSoftwares();
 
     return (
         <section className={styles.catalog}>
-            <h2 className={styles.catalogTitle}>Latest Softwares</h2>
-            {latestSoftwares.length > 0 ? (
+            <h2 className={styles.catalogTitle}>Softwares</h2>
+            {softwares.length > 0 ? (
                 <div className={styles.softwareList}>
-                    {latestSoftwares.map(software => (
+                    {softwares.map(software => (
                         <SoftwareListItem key={software._id} software={software} />
                     ))}
                 </div>

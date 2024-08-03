@@ -1,24 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import styles from './SoftwareDetails.module.css';
 
-import softwaresApi from '../../api/software-api';
 import commentsAPI from '../../api/comments-api';
+import { useGetOneSoftware } from '../../hooks/useSoftwares';
 
 export default function SoftwareDetails() {
-    const [software, setSoftware] = useState({});
+    const { softwareId } = useParams();
     const [username, setUsername] = useState('');
     const [comment, setComment] = useState('');
-    const { softwareId } = useParams();
-
-    useEffect(() => {
-        (async () => {
-            const result = await softwaresApi.getOne(softwareId);
-
-            setSoftware(result);
-        })();
-    }, []);
+    const [software, setSoftware] = useGetOneSoftware(softwareId);
 
     const commentSubmitHandler = async (e) => {
         e.preventDefault();
