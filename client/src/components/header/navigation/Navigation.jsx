@@ -1,10 +1,9 @@
-import { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { AuthContext } from '../../../contexts/AuthContext';
+import { useAuthContext } from '../../../contexts/AuthContext';
 
 export default function Navigation({ isHome }) {
     const location = useLocation();
-    const { isAuthenticated } = useContext(AuthContext);
+    const { isAuthenticated } = useAuthContext();
 
     return (
         <header className="header_section" style={!isHome ? { backgroundColor: '#002049' } : {}}>
