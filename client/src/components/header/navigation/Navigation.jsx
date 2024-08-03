@@ -41,6 +41,11 @@ export default function Navigation({ isHome }) {
                                             <i className="fa fa-user" aria-hidden="true"></i> Profile {location.pathname === '/profile' && <span className="sr-only">(current)</span>}
                                         </Link>
                                     </li>
+                                    <li className={`nav-item ${location.pathname === '/logout' ? 'active' : ''}`}>
+                                        <Link className="nav-link" to="/logout">
+                                            Logout {location.pathname === '/logout' && <span className="sr-only">(current)</span>}
+                                        </Link>
+                                    </li>
                                 </>
                             )}
                             {!isAuthenticated && (

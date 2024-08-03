@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom"
 
+import { AuthContextProvider } from "./contexts/AuthContext"
+
 import Footer from "./components/footer/Footer"
 import Header from "./components/header/Header"
 import Home from "./components/home/Home"
@@ -8,8 +10,7 @@ import Register from "./components/register/Register"
 import SoftwareList from "./components/software-list/SoftwareList"
 import SoftwareDetails from "./components/software-details/SoftwareDetails"
 import SoftwareCreate from "./components/software-create/SoftwareCreate"
-
-import { AuthContextProvider } from "./contexts/AuthContext"
+import Logout from "./components/logout/Logout"
 
 function App() {
 	return (
@@ -19,11 +20,12 @@ function App() {
 
 				<Routes>
 					<Route path="/" element={<Home />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/register" element={<Register />} />
+					<Route path="/logout" element={<Logout />} />
 					<Route path="/softwares" element={<SoftwareList />} />
 					<Route path="/softwares/:softwareId/details" element={<SoftwareDetails />} />
 					<Route path="/softwares/create" element={<SoftwareCreate />} />
-					<Route path="/login" element={<Login />} />
-					<Route path="/register" element={<Register />} />
 				</Routes>
 
 				<Footer />
