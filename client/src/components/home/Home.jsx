@@ -32,8 +32,10 @@ export default function Home() {
                                         There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
                                     </p>
                                 </div>
-
+                                
+                                <div className="row">
                                 {latestSoftwares.map((software) => <LatestSoftware key={software._id} {...software} />)}
+                                </div>
                                 
                                 <div className="btn-box">
                                     <Link to="/softwares">

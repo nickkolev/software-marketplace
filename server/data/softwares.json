@@ -11,7 +11,14 @@
         "category": "Development Tools",
         "size": "15 MB",
         "instructions": "Download the installer and follow the on-screen instructions to complete the installation.",
-        "createdAt": "2023-04-01T14:00:00Z"
+        "createdAt": "2023-04-01T14:00:00Z",
+        "comments": {
+            "b1396556-808f-464c-96c6-b95fe45547c8": {
+                "username": "Nikola",
+                "text": "This is a really cool text editor!",
+                "_id": "b1396556-808f-464c-96c6-b95fe45547c8"
+            }
+        }
     },
     "b647bfa6-3d24-4c2b-87dd-5bbf254f3c82": {
         "_id": "b647bfa6-3d24-4c2b-87dd-5bbf254f3c82",

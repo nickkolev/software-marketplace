@@ -4,9 +4,12 @@ import { useParams } from 'react-router-dom';
 import styles from './SoftwareDetails.module.css';
 
 import softwaresApi from '../../api/software-api';
+import commentsAPI from '../../api/comments-api';
 
 export default function SoftwareDetails() {
     const [software, setSoftware] = useState({});
+    const [username, setUsername] = useState('');
+    const [comment, setComment] = useState('');
     const { softwareId } = useParams();
 
     useEffect(() => {
@@ -16,6 +19,24 @@ export default function SoftwareDetails() {
             setSoftware(result);
         })();
     }, []);
+
+    const commentSubmitHandler = async (e) => {
+        e.preventDefault();
+
+        const newComment = await commentsAPI.create(softwareId, username, comment);
+
+        // TODO: this will be refactored
+        setSoftware(prevState => ({
+            ...prevState,
+            comments: {
+                ...prevState.comments,
+                [newComment._id]: newComment
+            }
+        }));
+
+        setUsername('');
+        setComment('');
+    }
 
     return (
         <div className={styles.softwareDetails}>
@@ -37,26 +58,41 @@ export default function SoftwareDetails() {
                     </div>
                 )} */}
 
-                {/* <div className={styles.commentsSection}>
+                <div className={styles.commentsSection}>
                     <h3>Comments</h3>
-                    {comments.map(comment => (
-                        <div key={comment.id} className={styles.comment}>
-                            <p><strong>{comment.user}</strong>: {comment.text}</p>
-                        </div>
-                    ))}
 
-                    {loggedInUser && (
-                        <form onSubmit={handleCommentSubmit} className={styles.commentForm}>
-                            <textarea
-                                value={newComment}
-                                onChange={handleCommentChange}
-                                className={styles.commentInput}
-                                placeholder="Write a comment..."
+                    {software.comments ? (
+                        Object.values(software.comments).map(comment => (
+                            <div key={comment._id} className={styles.comment}>
+                                <p><strong>{comment.username}</strong>: {comment.text}</p>
+                            </div>
+                        ))
+                    ) : (
+                        <p className={styles.noCommentsMessage}>No comments yet. Be the first to comment!</p>
+                    )}
+
+                    {/* {loggedInUser && ( */}
+                        <label>Add new comment:</label>
+                        <form className={styles.commentForm} onSubmit={commentSubmitHandler}>
+                            <input 
+                                type='text' 
+                                placeholder='Pesho' 
+                                name='username'
+                                onChange={(e) => setUsername(e.target.value)}
+                                value={username}
+                            ></input>
+
+                            <textarea 
+                                placeholder='Comment...' 
+                                name='comment' 
+                                onChange={(e) => setComment(e.target.value)}
+                                value={comment}
                             ></textarea>
+
                             <button type="submit" className={styles.commentButton}>Submit</button>
                         </form>
-                    )}
-                </div> */}
+                    {/* )} */}
+                </div>
             </div>
         </div>
     );
