@@ -1,101 +1,34 @@
 import { useState, useEffect } from "react";
 import softwaresApi from "../../../api/software-api";
+import { Link } from "react-router-dom";
 
-export default function LatestSoftware() {
-    const [latestSoftwares, setLatestSoftwares] = useState([]);
-
-    useEffect(() => {
-        (async () => {
-            // TODO: modify to fetch only the latest softwares
-            const result = await softwaresApi.getAll();
-
-            setLatestSoftwares(result.reverse().slice(0, 3));
-
-            console.log(result);
-        })();
-    }, []);
+export default function LatestSoftware({
+    _id,
+    title,
+    description,
+    imageUrl,
+}) {
 
     return (
-        <section className="service_section layout_padding">
-            <div className="service_container">
-                <div className="container ">
-                    <div className="heading_container heading_center">
-                        <h2>
-                            Latest <span>Software</span>
-                        </h2>
+        <div className="row">
+            <div className="col-md-4 ">
+                <div className="box ">
+                    <div className="img-box">
+                        <img src={imageUrl} alt={title} />
+                    </div>
+                    <div className="detail-box">
+                        <h5>
+                            {title}
+                        </h5>
                         <p>
-                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+                            {description}
                         </p>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-4 ">
-                            <div className="box ">
-                                <div className="img-box">
-                                    <img src="images/s1.png" alt="" />
-                                </div>
-                                <div className="detail-box">
-                                    <h5>
-                                        Currency Wallet
-                                    </h5>
-                                    <p>
-                                        fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                                        The
-                                        point of using
-                                    </p>
-                                    <a href="">
-                                        Read More
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-4 ">
-                            <div className="box ">
-                                <div className="img-box">
-                                    <img src="images/s2.png" alt="" />
-                                </div>
-                                <div className="detail-box">
-                                    <h5>
-                                        Security Storage
-                                    </h5>
-                                    <p>
-                                        fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                                        The
-                                        point of using
-                                    </p>
-                                    <a href="">
-                                        Read More
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-4 ">
-                            <div className="box ">
-                                <div className="img-box">
-                                    <img src="images/s3.png" alt="" />
-                                </div>
-                                <div className="detail-box">
-                                    <h5>
-                                        Expert Support
-                                    </h5>
-                                    <p>
-                                        fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                                        The
-                                        point of using
-                                    </p>
-                                    <a href="">
-                                        Read More
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="btn-box">
-                        <a href="">
-                            View All
-                        </a>
+                        <Link to={`/softwares/${_id}/details`}>
+                            Read More
+                        </Link>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     );
 }
