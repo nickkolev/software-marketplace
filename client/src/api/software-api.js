@@ -18,10 +18,16 @@ export const getOne = async (softwareId) => {
 
 export const create = (softwareData) => request.post(`${BASE_URL}`, softwareData);
 
+export const del = (softwareId) => request.del(`${BASE_URL}/${softwareId}`);
+
+export const update = (softwareId, softwareData) => request.put(`${BASE_URL}/${softwareId}`, softwareData);
+
 const softwaresApi = {
     getOne,
     getAll,
     create,
+    del,
+    update,
 }
 
 export default softwaresApi;

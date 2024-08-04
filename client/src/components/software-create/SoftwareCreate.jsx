@@ -13,8 +13,7 @@ const initialValues = {
     operatingSystem: '',
     category: '',
     size: '',
-    instructions: '',
-    createdAt: new Date().toISOString()
+    instructions: ''
 }
 
 export default function SoftwareCreate() {

@@ -1,21 +1,23 @@
-import { useParams } from 'react-router-dom';
-
-import styles from './SoftwareDetails.module.css';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useGetOneSoftware } from '../../hooks/useSoftwares';
 import { useForm } from '../../hooks/useForm';
-import { useAuthContext } from '../../contexts/AuthContext';
 import { useCreateComment, useGetAllComments } from '../../hooks/useComments';
+import { useAuthContext } from '../../contexts/AuthContext';
+import softwaresApi from '../../api/software-api';
+
+import styles from './SoftwareDetails.module.css';
 
 const initialValues = {
     comment: '',
 };
 
 export default function SoftwareDetails() {
+    const navigate = useNavigate();
     const { softwareId } = useParams();
     const [comments, setComments] = useGetAllComments(softwareId);
     const createComment = useCreateComment();
-    const { software } = useGetOneSoftware(softwareId);
-    const { isAuthenticated } = useAuthContext();
+    const { isAuthenticated, userId } = useAuthContext();
+    const [software] = useGetOneSoftware(softwareId);
 
     const {
         changeHandler,
@@ -39,6 +41,24 @@ export default function SoftwareDetails() {
         return <div>No software found.</div>;
     }
 
+    const softwareDeleteHandler = async () => {
+        isConfirmed = confirm(`Are you sure you want to delete ${software.title}?`);
+
+        if (!isConfirmed) {
+            return;
+        }
+
+        try {
+            await softwaresApi.del(softwareId);
+
+            navigate('/');
+        } catch (error) {
+            console.error('Failed to delete software', error);
+        }
+    }
+
+    const isOwner = userId === software._ownerId;
+
     return (
         <div className={styles.softwareDetails}>
             <img src={software.imageUrl} alt={software.title} className={styles.softwareImage} />
@@ -51,13 +71,13 @@ export default function SoftwareDetails() {
                 <p className={styles.operatingSystem}>OS: {software.operatingSystem}</p>
                 <p className={styles.instructions}>Instructions: {software.instructions}</p>
                 <a href={software.downloadUrl} className={styles.downloadButton}>Download</a>
-
-                {/* {loggedInUser && loggedInUser.id === software.authorId && (
+ 
+                {isOwner && (
                     <div className={styles.editButtons}>
-                        <button className={styles.editButton}>Edit</button>
-                        <button className={styles.deleteButton}>Delete</button>
+                        <Link to={`/softwares/${softwareId}/edit`} className={styles.editButton}>Edit</Link>
+                        <button className={styles.deleteButton} onClick={softwareDeleteHandler}>Delete</button>
                     </div>
-                )} */}
+                )}
 
                 <div className={styles.commentsSection}>
                     <h3>Comments</h3>
