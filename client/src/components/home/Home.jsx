@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
-
-import Info from "../footer/info/Info";
-import LatestSoftware from "./latest-software/LatestSoftware";
 import { Link } from "react-router-dom";
+
 import softwaresApi from "../../api/software-api";
+
+import LatestSoftware from "./latest-software/LatestSoftware";
+import Info from "../footer/info/Info";
 
 export default function Home() {
     const [latestSoftwares, setLatestSoftwares] = useState([]);
 
     useEffect(() => {
         (async () => {
-            // TODO: modify to fetch only the latest softwares
-            const result = await softwaresApi.getAll();
+            const result = await softwaresApi.getLatest();
 
-            setLatestSoftwares(result.reverse().slice(0, 3));
+            setLatestSoftwares(result);
         })();
     }, []);
 

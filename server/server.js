@@ -1645,6 +1645,7 @@
     	},
         softwares: {
             "d749a819-1e41-4c65-9ce2-7b429c4ebd0d": {
+            "_ownerId": "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
             "_id": "d749a819-1e41-4c65-9ce2-7b429c4ebd0d",
             "title": "Awesome Text Editor",
             "description": "A lightweight and powerful text editor for developers.",
@@ -1655,7 +1656,7 @@
             "category": "Development Tools",
             "size": "15 MB",
             "instructions": "Download the installer and follow the on-screen instructions to complete the installation.",
-            "createdAt": "2023-04-01T14:00:00Z",
+            "_createdOn": "1722800779628",
             "comments": {
                 "b1396556-808f-464c-96c6-b95fe45547c8": {
                     "username": "Nikola",
@@ -1665,6 +1666,7 @@
             }
         },
         "b647bfa6-3d24-4c2b-87dd-5bbf254f3c82": {
+            "_ownerId": "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
             "_id": "b647bfa6-3d24-4c2b-87dd-5bbf254f3c82",
             "title": "Super Photo Editor",
             "description": "A versatile photo editing software with numerous features.",
@@ -1675,9 +1677,10 @@
             "category": "Multimedia",
             "size": "50 MB",
             "instructions": "Run the downloaded file and follow the setup wizard to install the software.",
-            "createdAt": "2023-04-15T09:30:00Z"
+            "_createdOn": "1722800779629"
         },
         "c3e1e2d5-52b4-4b1d-8a68-0f9bb53c7641": {
+            "_ownerId": "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
             "_id": "c3e1e2d5-52b4-4b1d-8a68-0f9bb53c7641",
             "title": "Project Management Tool",
             "description": "A comprehensive tool to manage projects and tasks efficiently.",
@@ -1688,9 +1691,10 @@
             "category": "Productivity",
             "size": "75 MB",
             "instructions": "Download and run the installer, then follow the instructions to set up the software.",
-            "createdAt": "2023-05-10T11:45:00Z"
+            "_createdOn": "1722800779630"
         },
         "1b7a27e9-69a2-4b4b-9390-5c8372d4b546": {
+            "_ownerId": "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
             "_id": "1b7a27e9-69a2-4b4b-9390-5c8372d4b546",
             "title": "Music Composer",
             "description": "An advanced music composition software with a wide range of features.",
@@ -1701,7 +1705,7 @@
             "category": "Music",
             "size": "120 MB",
             "instructions": "Download the installer, run it, and follow the on-screen instructions to install the software.",
-            "createdAt": "2023-06-01T08:00:00Z"
+            "_createdOn": "1722800779631"
         },
         "f3b4e3b2-4e85-4a2d-8c24-1d42a6a8d7c1": {
             "_id": "f3b4e3b2-4e85-4a2d-8c24-1d42a6a8d7c1",
@@ -1714,7 +1718,7 @@
             "category": "Multimedia",
             "size": "85 MB",
             "instructions": "Download the setup file and follow the installation instructions to install the software.",
-            "createdAt": "2023-07-01T12:30:00Z"
+            "_createdOn": "1722800899570"
         },
         "a7d4b6c3-4d5f-4a0b-8a65-6d20a7c8e7d2": {
             "_id": "a7d4b6c3-4d5f-4a0b-8a65-6d20a7c8e7d2",
@@ -1727,9 +1731,10 @@
             "category": "Security",
             "size": "30 MB",
             "instructions": "Run the downloaded installer and follow the steps to install the password manager.",
-            "createdAt": "2023-07-20T15:15:00Z"
+            "_createdOn": "1722800899571"
         },
         "c9b6a9d4-7b1e-4c2b-9a32-9b5c8e3a7d3f": {
+            "_ownerId": "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
             "_id": "c9b6a9d4-7b1e-4c2b-9a32-9b5c8e3a7d3f",
             "title": "3D Modeling Software",
             "description": "A powerful 3D modeling software for creating detailed 3D models.",
@@ -1740,7 +1745,7 @@
             "category": "Graphics & Design",
             "size": "200 MB",
             "instructions": "Download the installer, open it, and follow the on-screen instructions to complete the installation.",
-            "createdAt": "2023-08-10T17:45:00Z"
+            "_createdOn": "1722800899572"
     }
         }
     };

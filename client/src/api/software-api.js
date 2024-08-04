@@ -10,6 +10,14 @@ export const getAll = async () => {
     return softwares;
 }
 
+export const getLatest = async () => {
+    const result = await request.get(`${BASE_URL}?sortBy=_createdOn desc&pageSize=3`);
+
+    const latestSoftwares = Object.values(result);
+
+    return latestSoftwares;
+}
+
 export const getOne = async (softwareId) => {
     const software = await request.get(`${BASE_URL}/${softwareId}`);
 
@@ -28,6 +36,7 @@ const softwaresApi = {
     create,
     del,
     update,
+    getLatest,
 }
 
 export default softwaresApi;
