@@ -18,17 +18,20 @@ export function useGetAllSoftwares() {
 }
 
 export function useGetOneSoftware(softwareId) {
-    const [software, setSoftware] = useState({});
+    const [software, setSoftware] = useState(undefined); // Initialize as undefined
 
     useEffect(() => {
         (async () => {
-            const result = await softwaresApi.getOne(softwareId);
-
-            setSoftware(result);
+            try {
+                const result = await softwaresApi.getOne(softwareId);
+                setSoftware(result);
+            } catch (error) {
+                console.error('Failed to fetch software', error);
+            }
         })();
     }, [softwareId]);
 
-    return [software, setSoftware];
+    return { software, setSoftware };
 }
 
 export function useCreateSoftware() {

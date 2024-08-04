@@ -12,7 +12,10 @@ export function useForm(initialValues, submitCallback) {
     
     function submitHandler(event) {
         event.preventDefault();
+
         submitCallback(values);
+        
+        setValues(initialValues);
     }
     
     return {

@@ -1,33 +1,42 @@
-import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import styles from './SoftwareDetails.module.css';
-
-import commentsAPI from '../../api/comments-api';
 import { useGetOneSoftware } from '../../hooks/useSoftwares';
+import { useForm } from '../../hooks/useForm';
+import { useAuthContext } from '../../contexts/AuthContext';
+import { useCreateComment, useGetAllComments } from '../../hooks/useComments';
+
+const initialValues = {
+    comment: '',
+};
 
 export default function SoftwareDetails() {
     const { softwareId } = useParams();
-    const [username, setUsername] = useState('');
-    const [comment, setComment] = useState('');
-    const [software, setSoftware] = useGetOneSoftware(softwareId);
+    const [comments, setComments] = useGetAllComments(softwareId);
+    const createComment = useCreateComment();
+    const { software } = useGetOneSoftware(softwareId);
+    const { isAuthenticated } = useAuthContext();
 
-    const commentSubmitHandler = async (e) => {
-        e.preventDefault();
+    const {
+        changeHandler,
+        submitHandler,
+        values,
+    } = useForm(initialValues, async ({ comment }) => {
+        try {
+            const newComment = await createComment(softwareId, comment); 
 
-        const newComment = await commentsAPI.create(softwareId, username, comment);
+            setComments(oldComments => [...oldComments, newComment]);
+        } catch (error) {
+            console.log(error.message);
+        }
+    });
 
-        // TODO: this will be refactored
-        setSoftware(prevState => ({
-            ...prevState,
-            comments: {
-                ...prevState.comments,
-                [newComment._id]: newComment
-            }
-        }));
+    if (software === undefined) {
+        return <div>Loading...</div>;
+    }
 
-        setUsername('');
-        setComment('');
+    if (!software) {
+        return <div>No software found.</div>;
     }
 
     return (
@@ -53,37 +62,30 @@ export default function SoftwareDetails() {
                 <div className={styles.commentsSection}>
                     <h3>Comments</h3>
 
-                    {software.comments ? (
-                        Object.values(software.comments).map(comment => (
+                    {comments.map(comment => (
                             <div key={comment._id} className={styles.comment}>
-                                <p><strong>{comment.username}</strong>: {comment.text}</p>
+                                <p><strong>{comment.author.email}</strong>: {comment.text}</p>
                             </div>
                         ))
-                    ) : (
-                        <p className={styles.noCommentsMessage}>No comments yet. Be the first to comment!</p>
+                    }
+
+                    {comments.length === 0 && <p className={styles.noCommentsMessage}>No comments yet. Be the first to comment!</p>}
+
+                    {isAuthenticated && (
+                        <>
+                            <label>Add new comment:</label>
+                            <form className={styles.commentForm} onSubmit={submitHandler}>
+                                <textarea
+                                    placeholder='Comment...'
+                                    name='comment'
+                                    onChange={changeHandler}
+                                    value={values.comment}
+                                ></textarea>
+
+                                <button type="submit" className={styles.commentButton}>Submit</button>
+                            </form>
+                        </>
                     )}
-
-                    {/* {loggedInUser && ( */}
-                        <label>Add new comment:</label>
-                        <form className={styles.commentForm} onSubmit={commentSubmitHandler}>
-                            <input 
-                                type='text' 
-                                placeholder='Pesho' 
-                                name='username'
-                                onChange={(e) => setUsername(e.target.value)}
-                                value={username}
-                            ></input>
-
-                            <textarea 
-                                placeholder='Comment...' 
-                                name='comment' 
-                                onChange={(e) => setComment(e.target.value)}
-                                value={comment}
-                            ></textarea>
-
-                            <button type="submit" className={styles.commentButton}>Submit</button>
-                        </form>
-                    {/* )} */}
                 </div>
             </div>
         </div>
