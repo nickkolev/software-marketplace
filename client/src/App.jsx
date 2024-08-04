@@ -12,6 +12,7 @@ import SoftwareDetails from "./components/software-details/SoftwareDetails"
 import SoftwareCreate from "./components/software-create/SoftwareCreate"
 import Logout from "./components/logout/Logout"
 import SoftwareEdit from "./components/software-edit/SoftwareEdit"
+import Authenticated from "./components/common/Authenticated"
 
 function App() {
 	return (
@@ -23,11 +24,13 @@ function App() {
 					<Route path="/" element={<Home />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/register" element={<Register />} />
-					<Route path="/logout" element={<Logout />} />
 					<Route path="/softwares" element={<SoftwareList />} />
 					<Route path="/softwares/:softwareId/details" element={<SoftwareDetails />} />
-					<Route path="/softwares/:softwareId/edit" element={<SoftwareEdit />} />
-					<Route path="/softwares/create" element={<SoftwareCreate />} />
+					<Route element={<Authenticated />}>
+						<Route path="/softwares/create" element={<SoftwareCreate />} />
+						<Route path="/softwares/:softwareId/edit" element={<SoftwareEdit />} />
+						<Route path="/logout" element={<Logout />} />
+					</Route>
 				</Routes>
 
 				<Footer />
