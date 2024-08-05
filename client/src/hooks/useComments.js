@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import commentsAPI from '../api/comments-api';
 
 export function useCreateComment() {
-    const createHandler = (softwareId, comment) => commentsAPI.create(softwareId, comment);
+    const createHandler = (softwareId, comment, email) => commentsAPI.create(softwareId, comment, email);
 
     return createHandler;
 }

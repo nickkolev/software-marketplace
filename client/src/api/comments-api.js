@@ -2,7 +2,7 @@ import requester from "./requester"
 
 const BASE_URL = 'http://localhost:3030/data/comments/';
 
-const create = (softwareId, text) => requester.post(BASE_URL, { softwareId, text });
+const create = (softwareId, text, email) => requester.post(BASE_URL, { softwareId, text, email });
 
 const getAll = (softwareId) => {
     const params = new URLSearchParams({

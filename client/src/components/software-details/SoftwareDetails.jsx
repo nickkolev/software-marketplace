@@ -16,7 +16,7 @@ export default function SoftwareDetails() {
     const { softwareId } = useParams();
     const [comments, setComments] = useGetAllComments(softwareId);
     const createComment = useCreateComment();
-    const { isAuthenticated, userId } = useAuthContext();
+    const { isAuthenticated, userId, email } = useAuthContext();
     const [software] = useGetOneSoftware(softwareId);
 
     const {
@@ -25,7 +25,7 @@ export default function SoftwareDetails() {
         values,
     } = useForm(initialValues, async ({ comment }) => {
         try {
-            const newComment = await createComment(softwareId, comment); 
+            const newComment = await createComment(softwareId, comment, email); 
 
             setComments(oldComments => [...oldComments, newComment]);
         } catch (error) {
@@ -42,7 +42,7 @@ export default function SoftwareDetails() {
     }
 
     const softwareDeleteHandler = async () => {
-        isConfirmed = confirm(`Are you sure you want to delete ${software.title}?`);
+        const isConfirmed = confirm(`Are you sure you want to delete ${software.title}?`);
 
         if (!isConfirmed) {
             return;
@@ -82,14 +82,19 @@ export default function SoftwareDetails() {
                 <div className={styles.commentsSection}>
                     <h3>Comments</h3>
 
-                    {comments.map(comment => (
+                    {comments && comments.length > 0 ? (
+                        comments.map(comment => (
                             <div key={comment._id} className={styles.comment}>
-                                <p><strong>{comment.author.email}</strong>: {comment.text}</p>
+                                {comment.text && comment.email ? (
+                                    <p><strong>{comment.email}</strong>: {comment.text}</p>
+                                ) : (
+                                    <p><strong>Anonymous</strong>: {comment.text}</p>
+                                )}
                             </div>
                         ))
-                    }
-
-                    {comments.length === 0 && <p className={styles.noCommentsMessage}>No comments yet. Be the first to comment!</p>}
+                    ) : (
+                        <p className={styles.noCommentsMessage}>No comments yet. Be the first to comment!</p>
+                    )}
 
                     {isAuthenticated && (
                         <>
