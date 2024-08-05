@@ -47,3 +47,17 @@ export function useCreateSoftware() {
 
     return softwareCreateHandler;
 }
+
+export function useGetUserSoftwares(userId) {
+    const [softwares, setSoftwares] = useState([]);
+
+    useEffect(() => {
+        (async () => {
+            const result = await softwaresApi.getUserSoftwares(userId);
+
+            setSoftwares(result);
+        })();
+    }, [userId]);
+
+    return [softwares, setSoftwares];
+}

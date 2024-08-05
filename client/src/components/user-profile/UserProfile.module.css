@@ -1,0 +1,50 @@
+.userProfile {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+.profileInfo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profilePhoto {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.name {
+    font-size: 24px;
+    margin: 0;
+}
+
+.email {
+    font-size: 16px;
+    color: #555;
+}
+
+.userSoftwares {
+    margin-top: 20px;
+}
+
+.software {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.viewButton,
+.editButton,
+.deleteButton {
+    margin-left: 10px;
+}
+
+.deleteButton {
+    color: red;
+}

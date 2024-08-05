@@ -30,6 +30,14 @@ export const del = (softwareId) => request.del(`${BASE_URL}/${softwareId}`);
 
 export const update = (softwareId, softwareData) => request.put(`${BASE_URL}/${softwareId}`, softwareData);
 
+export const getUserSoftwares = async (userId) => {
+    const result = await request.get(`${BASE_URL}?where=_ownerId%3D%22${userId}%22`);
+
+    const softwares = Object.values(result);
+
+    return softwares;
+}
+
 const softwaresApi = {
     getOne,
     getAll,
@@ -37,6 +45,7 @@ const softwaresApi = {
     del,
     update,
     getLatest,
+    getUserSoftwares,
 }
 
 export default softwaresApi;
