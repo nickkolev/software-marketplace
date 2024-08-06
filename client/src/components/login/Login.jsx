@@ -13,6 +13,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Alert from '@mui/material/Alert';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { useLogin } from "../../hooks/useAuth";
@@ -24,13 +25,14 @@ const initialValues = { email: '', password: '' };
 export default function Login() {
   const login = useLogin();
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = React.useState('');
 
   const loginHandler = async ({ email, password }) => {
     try {
       await login(email, password);
       navigate('/');
     } catch (err) {
-      console.log(err.message);
+      setErrorMessage(err.message);
     }
   };
 
@@ -59,6 +61,11 @@ export default function Login() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+          {errorMessage && (
+            <Alert severity="error" sx={{ width: '100%', mt: 2 }}>
+              {errorMessage}
+            </Alert>
+          )}
           <Box component="form" onSubmit={submitHandler} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"

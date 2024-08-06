@@ -72,11 +72,11 @@ export default function SoftwareDetails() {
                 <p className={styles.instructions}>Instructions: {software.instructions}</p>
                 <a href={software.downloadUrl} className={styles.downloadButton}>Download</a>
  
-                {isOwner && (
-                    <div className={styles.editButtons}>
-                        <Link to={`/softwares/${softwareId}/edit`} className={styles.editButton}>Edit</Link>
-                        <button className={styles.deleteButton} onClick={softwareDeleteHandler}>Delete</button>
-                    </div>
+                {(isOwner && isAuthenticated) && (
+                <div className={styles.editButtons}>
+                    <Link to={`/softwares/${softwareId}/edit`} className={styles.editButton}>Edit</Link>
+                    <button className={styles.deleteButton} onClick={softwareDeleteHandler}>Delete</button>
+                </div>
                 )}
 
                 <div className={styles.commentsSection}>
