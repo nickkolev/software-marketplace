@@ -2,20 +2,14 @@ import { Link } from 'react-router-dom';
 import { useGetUserSoftwares } from '../../hooks/useSoftwares';
 import { useAuthContext } from '../../contexts/AuthContext';
 import softwaresApi from '../../api/software-api';
+import { useState } from 'react';
 
 import styles from './UserProfile.module.css';
 
 export default function UserProfile() {
     const { userId, email } = useAuthContext();
     const [softwares, setSoftwares] = useGetUserSoftwares(userId);
-
-    // if (loading) {
-    //     return <div>Loading...</div>;
-    // }
-
-    // if (error) {
-    //     return <div>Error loading profile.</div>;
-    // }
+    const [deleteError, setDeleteError] = useState('');
 
     const softwareDeleteHandler = async (softwareId, softwareTitle) => {
         const isConfirmed = confirm(`Are you sure you want to delete ${softwareTitle}?`);
@@ -26,9 +20,12 @@ export default function UserProfile() {
 
         try {
             await softwaresApi.del(softwareId);
+
             setSoftwares(oldSoftwares => oldSoftwares.filter(software => software._id !== softwareId));
+
+            setDeleteError(''); 
         } catch (error) {
-            console.error('Failed to delete software', error);
+            setDeleteError('Failed to delete software: ' + error.message);
         }
     }
 
@@ -41,6 +38,9 @@ export default function UserProfile() {
 
             <div className={styles.userSoftwares}>
                 <h3>Your Softwares</h3>
+                {deleteError && (
+                    <p className={styles.errorMessage}>{deleteError}</p>
+                )}
                 {softwares.length === 0 && <p>You haven't uploaded any software yet.</p>}
                 {softwares.map(software => (
                     <div key={software._id} className={styles.software}>

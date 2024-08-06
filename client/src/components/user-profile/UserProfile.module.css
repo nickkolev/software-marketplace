@@ -48,3 +48,10 @@
 .deleteButton {
     color: red;
 }
+
+.errorMessage {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

@@ -19,13 +19,14 @@ const initialValues = {
 export default function SoftwareCreate() {
     const navigate = useNavigate();
     const createSoftware = useCreateSoftware();
+    const [errorMessage, setErrorMessage] = useState('');
 
     const createHandler = async (values) => {
         try {
             const { _id: softwareId } = await createSoftware(values);
             navigate(`/softwares/${softwareId}/details`);
         } catch (error) {
-            console.error(error);
+            setErrorMessage(error.message);
         }
     };
 
@@ -39,6 +40,11 @@ export default function SoftwareCreate() {
         <div className={styles.createSoftwareContainer}>
             <div className={styles.formContainer}>
                 <h2 className="text-center mb-4">Create Software</h2>
+                {errorMessage && (
+                    <div className="alert alert-danger" role="alert">
+                        {errorMessage}
+                    </div>
+                )}
                 <form onSubmit={submitHandler}>
                     <div className="mb-3">
                         <label htmlFor="title" className={styles.formLabel}>Title</label>

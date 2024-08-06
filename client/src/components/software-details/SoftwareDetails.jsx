@@ -1,6 +1,7 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useGetOneSoftware } from '../../hooks/useSoftwares';
 import { useForm } from '../../hooks/useForm';
+import { useState } from 'react';
 import { useCreateComment, useGetAllComments } from '../../hooks/useComments';
 import { useAuthContext } from '../../contexts/AuthContext';
 import softwaresApi from '../../api/software-api';
@@ -18,6 +19,8 @@ export default function SoftwareDetails() {
     const createComment = useCreateComment();
     const { isAuthenticated, userId, email } = useAuthContext();
     const [software] = useGetOneSoftware(softwareId);
+    const [commentError, setCommentError] = useState('');
+    const [deleteError, setDeleteError] = useState('');
 
     const {
         changeHandler,
@@ -28,8 +31,10 @@ export default function SoftwareDetails() {
             const newComment = await createComment(softwareId, comment, email); 
 
             setComments(oldComments => [...oldComments, newComment]);
+
+            setCommentError('');
         } catch (error) {
-            console.log(error.message);
+            setCommentError(error.message);
         }
     });
 
@@ -53,7 +58,7 @@ export default function SoftwareDetails() {
 
             navigate('/');
         } catch (error) {
-            console.error('Failed to delete software', error);
+            setDeleteError('Failed to delete software: ' + error.message);
         }
     }
 
@@ -76,6 +81,9 @@ export default function SoftwareDetails() {
                 <div className={styles.editButtons}>
                     <Link to={`/softwares/${softwareId}/edit`} className={styles.editButton}>Edit</Link>
                     <button className={styles.deleteButton} onClick={softwareDeleteHandler}>Delete</button>
+                    {deleteError && (
+                        <p className={styles.errorMessage}>{deleteError}</p>
+                    )}
                 </div>
                 )}
 
@@ -107,6 +115,10 @@ export default function SoftwareDetails() {
                                     value={values.comment}
                                 ></textarea>
 
+                                {commentError && (
+                                    <p className={styles.errorMessage}>{commentError}</p>
+                                )}
+                                
                                 <button type="submit" className={styles.commentButton}>Submit</button>
                             </form>
                         </>

@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Alert from '@mui/material/Alert';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { useRegister } from '../../hooks/useAuth';
@@ -64,9 +65,9 @@ export default function Register() {
                         Sign up
                     </Typography>
                     {error && (
-                        <Typography component="p" variant="body2" color="error">
-                            {error}
-                        </Typography>
+                        <Alert severity="error" sx={{ width: '100%', mt: 2 }}>
+                        {error}
+                        </Alert>
                     )}
                     <Box component="form" noValidate onSubmit={submitHandler} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>

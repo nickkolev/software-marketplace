@@ -49,6 +49,13 @@ textarea.form-control {
     margin-top: 20px;
 }
 
+.errorMessage {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 @media (max-width: 768px) {
     .createSoftwareContainer {
         padding: 0px;
