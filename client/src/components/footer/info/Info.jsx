@@ -52,7 +52,7 @@ export default function Info() {
                                 Info
                             </h4>
                             <p>
-                                necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful
+                                Software Market is your go-to source for the latest softwares. Designed by developers for developers since 2024.
                             </p>
                         </div>
                     </div>

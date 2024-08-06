@@ -29,7 +29,7 @@ export default function Home() {
                                         Latest <span>Software</span>
                                     </h2>
                                     <p>
-                                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+                                        Explore the newest software available on our marketplace. Find the perfect solution for your needs!
                                     </p>
                                 </div>
                                 

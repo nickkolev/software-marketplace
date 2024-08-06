@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Slider() {
     return (
         <section className="slider_section ">
@@ -9,16 +11,15 @@ export default function Slider() {
                                 <div className="col-md-6 ">
                                     <div className="detail-box">
                                         <h1>
-                                            Crypto
-                                            Currency
+                                            Software Market
                                         </h1>
                                         <p>
-                                            Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.
+                                            Software Market is your go-to source for the latest softwares. Explore a wide range of applications across various categories with detailed descriptions, user reviews, and secure downloads!
                                         </p>
                                         <div className="btn-box">
-                                            <a href="" className="btn1">
-                                                Read More
-                                            </a>
+                                            <Link to="/softwares" className="btn1">
+                                                Explore
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
@@ -36,22 +37,21 @@ export default function Slider() {
                                 <div className="col-md-6 ">
                                     <div className="detail-box">
                                         <h1>
-                                            Crypto
-                                            Currency
+                                            Newest Mobile Apps
                                         </h1>
                                         <p>
-                                            Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.
-                                        </p>
+                                            Discover the latest mobile applications available on Software Market. Browse through a variety of apps for Android and iOS devices!
+                                        </p> 
                                         <div className="btn-box">
-                                            <a href="" className="btn1">
-                                                Read More
-                                            </a>
+                                            <Link to="/softwares" className="btn1">
+                                                Browse
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="img-box">
-                                        <img src="images/slider-img.png" alt="" />
+                                        <img src="images/slider-robot.png" alt="" />
                                     </div>
                                 </div>
                             </div>
@@ -63,22 +63,21 @@ export default function Slider() {
                                 <div className="col-md-6 ">
                                     <div className="detail-box">
                                         <h1>
-                                            Crypto
-                                            Currency
+                                            Register now
                                         </h1>
                                         <p>
-                                            Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.
+                                            Register now to join Software Market! Gain access to exclusive software downloads, leave reviews, and participate in our community discussions. Sign up today and elevate your software experience!
                                         </p>
                                         <div className="btn-box">
-                                            <a href="" className="btn1">
-                                                Read More
-                                            </a>
+                                            <Link to="/register" className="btn1">
+                                                Join
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="img-box">
-                                        <img src="images/slider-img.png" alt="" />
+                                        <img src="images/sign-up-image.png" alt="" />
                                     </div>
                                 </div>
                             </div>
