@@ -18,8 +18,6 @@ export function useForm(initialValues, submitCallback) {
         event.preventDefault();
 
         await submitCallback(values);
-        
-        setValues(initialValues);
     }
     
     return {

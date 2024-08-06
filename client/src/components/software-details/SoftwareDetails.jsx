@@ -6,6 +6,15 @@ import { useCreateComment, useGetAllComments } from '../../hooks/useComments';
 import { useAuthContext } from '../../contexts/AuthContext';
 import softwaresApi from '../../api/software-api';
 
+import {
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    Button
+} from '@mui/material';
+
 import styles from './SoftwareDetails.module.css';
 
 const initialValues = {
@@ -21,6 +30,7 @@ export default function SoftwareDetails() {
     const [software] = useGetOneSoftware(softwareId);
     const [commentError, setCommentError] = useState('');
     const [deleteError, setDeleteError] = useState('');
+    const [open, setOpen] = useState(false);
 
     const {
         changeHandler,
@@ -46,17 +56,19 @@ export default function SoftwareDetails() {
         return <div>No software found.</div>;
     }
 
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     const softwareDeleteHandler = async () => {
-        const isConfirmed = confirm(`Are you sure you want to delete ${software.title}?`);
-
-        if (!isConfirmed) {
-            return;
-        }
-
         try {
             await softwaresApi.del(softwareId);
-
             navigate('/');
+            handleClose();
         } catch (error) {
             setDeleteError('Failed to delete software: ' + error.message);
         }
@@ -80,12 +92,29 @@ export default function SoftwareDetails() {
                 {(isOwner && isAuthenticated) && (
                 <div className={styles.editButtons}>
                     <Link to={`/softwares/${softwareId}/edit`} className={styles.editButton}>Edit</Link>
-                    <button className={styles.deleteButton} onClick={softwareDeleteHandler}>Delete</button>
+                    <button className={styles.deleteButton} onClick={handleClickOpen}>Delete</button>
                     {deleteError && (
                         <p className={styles.errorMessage}>{deleteError}</p>
                     )}
                 </div>
                 )}
+
+                <Dialog open={open} onClose={handleClose}>
+                    <DialogTitle>Confirm Delete</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            Are you sure you want to delete {software.title}?
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Cancel
+                        </Button>
+                        <Button onClick={softwareDeleteHandler} color="secondary">
+                            Delete
+                        </Button>
+                    </DialogActions>
+                </Dialog>
 
                 <div className={styles.commentsSection}>
                     <h3>Comments</h3>

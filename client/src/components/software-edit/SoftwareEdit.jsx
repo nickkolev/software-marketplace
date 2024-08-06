@@ -1,28 +1,48 @@
 import { useState, useEffect, useMemo } from 'react';
-import styles from './SoftwareEdit.module.css';
 import { useForm } from '../../hooks/useForm';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetOneSoftware } from '../../hooks/useSoftwares';
 import softwaresApi from '../../api/software-api';
 
+import {
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    Button,
+} from '@mui/material';
+
+import styles from './SoftwareEdit.module.css';
+
 export default function SoftwareEdit() {
     const navigate = useNavigate();
     const { softwareId } = useParams();
     const [software] = useGetOneSoftware(softwareId);
+    const [open, setOpen] = useState(false);
+    const [updateError, setUpdateError] = useState('');
 
     const {
         changeHandler,
         submitHandler,
         values,
     } = useForm(software, async (values) => {
-        const isConfirmed = confirm('Are you sure you want to update this software?');
-
-        if (isConfirmed) {
-            await softwaresApi.update(softwareId, values);
-
-            navigate(`/softwares/${softwareId}/details`);
-        }
+        setOpen(true);
     });
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleConfirmUpdate = async () => {
+        try {
+            await softwaresApi.update(softwareId, values);
+            navigate(`/softwares/${softwareId}/details`);
+            handleClose();
+        } catch (error) {
+            setUpdateError('Failed to update software: ' + error.message);
+        }
+    };
 
     return (
         <div className={styles.editSoftware}>
@@ -58,22 +78,22 @@ export default function SoftwareEdit() {
                 </div>
                 <div className={styles.formGroup}>
                     <label htmlFor="download url">Download Url:</label>
-                    <input 
-                        type="url" 
-                        id="download" 
-                        name="download url" 
+                    <input
+                        type="url"
+                        id="download"
+                        name="download url"
                         value={values.downloadUrl}
-                        onChange={changeHandler} 
+                        onChange={changeHandler}
                     />
                 </div>
                 <div className={styles.formGroup}>
                     <label htmlFor="image">Image Url:</label>
-                    <input 
-                        type="url" 
-                        id="image" 
-                        name="image" 
+                    <input
+                        type="url"
+                        id="image"
+                        name="image"
                         value={values.imageUrl}
-                        onChange={changeHandler} 
+                        onChange={changeHandler}
                     />
                 </div>
                 <div className={styles.formGroup}>
@@ -117,6 +137,23 @@ export default function SoftwareEdit() {
                 </div>
                 <button type="submit" className={styles.saveButton}>Save</button>
             </form>
+
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Confirm Update</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Are you sure you want to update this software?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleConfirmUpdate} color="secondary">
+                        Update
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 };
